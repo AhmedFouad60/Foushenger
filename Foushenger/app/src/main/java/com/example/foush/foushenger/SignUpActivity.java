@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foush.foushenger.Utils.Session;
 import com.example.foush.foushenger.models.MainResponse;
 import com.example.foush.foushenger.models.User;
 import com.example.foush.foushenger.webservices.API;
@@ -24,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText userNameEditText,passwordEditText,emailEditText,adressEditText;
     TextView link_login;
     Button registerBtn;
+    public static User user;
 
 
 
@@ -48,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String email=emailEditText.getText().toString();
 
 //make object of the user
-                User user=new User();
+                 user=new User();
                 user.username=userName;
                 user.email=email;
                 user.password=password;
@@ -65,7 +67,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                         }else if(response.body().status == "1"){//register ok
                             Toast.makeText(SignUpActivity.this,response.body().message, Toast.LENGTH_SHORT).show();
+                            Session.getInstance().loginUser(user);
                             Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
+
                             startActivity(intent);
 
                         }else {//register error

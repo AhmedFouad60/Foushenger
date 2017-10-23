@@ -26,17 +26,18 @@
         $usermail=$obj->{'email'};
         $userpassword=$obj->{'password'};
         //i want the user register with unique email
-        $check_user_email= $db->table('FoushengerUsers')
+        $check_user_email_password= $db->table('FoushengerUsers')
                                          ->where('user_email','=',$usermail)
                                          ->where('user_password','=',$userpassword)
-                                         ->get();
+                                         ->select('id,user_name,user_email,is_user_admin')//select the user to check the admin
+                                         ->get()->first();
 
         if($db->getCount()>0){
 
-         print"{\"status\":1,\"message\":\"Welcome !\"}"; //response to the Android with status and Message
+         print"{\"status\":1,\"message\":\"Welcome !\",\"user\":$check_user_email_password}"; //response to the Android with status and Message
         }else{
 
-         print"{\"status\":0,\"message\":\"Error in Email or Password\"}"; //response to the Android with status and Message
+         print"{\"status\":0,\"message\":\"Error in Email or Password\",\"user\":$check_user_email_password}"; //response to the Android with status and Message
             }
     }//End of Every things OK
 

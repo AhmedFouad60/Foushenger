@@ -1,5 +1,9 @@
 package com.example.foush.foushenger.Utils;
 
+import android.app.Activity;
+import android.content.Intent;
+
+import com.example.foush.foushenger.SignInActivity;
 import com.example.foush.foushenger.models.User;
 
 import io.realm.Realm;
@@ -20,30 +24,61 @@ public class Session {
         }
         return instance;
     }
-
+//config realm
     private Session(){
         RealmConfiguration realmConfiguration=new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build();
         realm=Realm.getInstance(realmConfiguration);
     }
+//session for login
+    public void loginUser(final User user) {
 
-    public void loginUser(final User user){
-        realm.executeTransaction(new Realm.Transaction(){
 
+        if (realm.where(User.class).findFirst() == null) {
+            realm.executeTransaction(new Realm.Transaction() {
 
+                @Override
+                public void execute(Realm realm) {
+                    realm.copyToRealm(user);
+
+                }
+            });
+        }else {
+            logout();
+            loginUser(user);
+        }
+    }
+
+    public void logout() {
+        realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                realm.copyToRealm(user);
-
+                realm.delete(User.class);
             }
         });
+    }//End of logout
+
+
+    public boolean isUerLoggedIn(){
+        if(realm.where(User.class).findFirst()==null){
+            return false;
+        }else {
+            return true;
+        }
+    }//End of isUserLoggedIn
+
+    public User getUser(){
+        return  realm.where(User.class).findFirst();
     }
 
 
-
-
-
+    //logout and go to the SignActivity
+    public void logoutAndGoToLogin(Activity activity){
+        logout();
+        activity.startActivity(new Intent(activity, SignInActivity.class));
+        activity.finish();
+    }
 
 
 

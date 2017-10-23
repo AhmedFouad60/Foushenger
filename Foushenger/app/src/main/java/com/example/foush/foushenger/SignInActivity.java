@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foush.foushenger.models.MainResponse;
+import com.example.foush.foushenger.models.LoginResponse;
 import com.example.foush.foushenger.models.User;
 import com.example.foush.foushenger.webservices.API;
 import com.example.foush.foushenger.webservices.ServiceGenerator;
@@ -22,6 +22,7 @@ public class SignInActivity extends AppCompatActivity {
     TextView link_signup;
     Button login;
     EditText passwordEditText,emailEditText;
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,22 +46,34 @@ public class SignInActivity extends AppCompatActivity {
                 String email=emailEditText.getText().toString();
 
 //make object of the user
-                User user=new User();
+                 user=new User();
                 user.username="";
                 user.email=email;
                 user.password=password;
 
+
                 //Retrofit part to send request
                 API api= ServiceGenerator.createService(API.class);
-                Call<MainResponse> call=api.loginUser(user);
+                Call<LoginResponse> call=api.loginUser(user);
 
-                call.enqueue(new Callback<MainResponse>() {
+                call.enqueue(new Callback<LoginResponse>() {
                     @Override
-                    public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
 
                         if(response.body().status == "1"){//register ok
                             Toast.makeText(SignInActivity.this,response.body().message, Toast.LENGTH_SHORT).show();
+                            user.username=response.body().user.user_name;
+                            user.id=Integer.parseInt(response.body().user.user_name);
+                            user.isAdmin=response.body().user.is_user_admin.equals("1");
+
+
+
+
+
+                            Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+
+                            startActivity(intent);
 
                         }else {//register error
                             Toast.makeText(SignInActivity.this,response.body().message, Toast.LENGTH_SHORT).show();
@@ -68,7 +81,7 @@ public class SignInActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<MainResponse> call, Throwable t) {
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
                         Toast.makeText(SignInActivity.this, "unknown problem", Toast.LENGTH_SHORT).show();
                     }
                 });
