@@ -67,10 +67,6 @@ public class SignInActivity extends AppCompatActivity {
                             user.id=Integer.parseInt(response.body().user.user_name);
                             user.isAdmin=response.body().user.is_user_admin.equals("1");
 
-
-
-
-
                             Intent intent=new Intent(SignInActivity.this,MainActivity.class);
 
                             startActivity(intent);

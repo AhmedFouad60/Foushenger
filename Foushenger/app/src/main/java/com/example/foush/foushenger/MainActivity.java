@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         getChatRooms();
 
         User user= Session.getInstance().getUser();
-/* Add fabbutton if the user is admin
+/* Add fab button if the user is admin and set his email to the top bar
         if(user != null){
            toolbarTitle.setText(getString(R.string.welcome)+user.username);
             toolbarDesc.setText(R.string.nice_to_meet_you);
@@ -52,7 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
 */
 
-    }
+
+
+
+
+
+
+    }//End of onCreate
 
     private void getChatRooms(){
 
@@ -80,4 +86,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-}
+}//End of the Activity
