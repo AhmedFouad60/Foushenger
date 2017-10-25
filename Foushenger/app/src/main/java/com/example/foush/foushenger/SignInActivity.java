@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foush.foushenger.Utils.Session;
 import com.example.foush.foushenger.models.LoginResponse;
 import com.example.foush.foushenger.models.User;
 import com.example.foush.foushenger.webservices.API;
@@ -64,8 +65,14 @@ public class SignInActivity extends AppCompatActivity {
                         if(response.body().status == "1"){//register ok
                             Toast.makeText(SignInActivity.this,response.body().message, Toast.LENGTH_SHORT).show();
                             user.username=response.body().user.user_name;
-                            user.id=Integer.parseInt(response.body().user.user_name);
+                            user.id=Integer.parseInt(response.body().user.id);
                             user.isAdmin=response.body().user.is_user_admin.equals("1");
+                            //register the session
+                            Session.getInstance().loginUser(user);
+                            Intent goToMain=new Intent(SignInActivity.this,MainActivity.class);
+                            startActivity(goToMain);
+
+
 
                             Intent intent=new Intent(SignInActivity.this,MainActivity.class);
 

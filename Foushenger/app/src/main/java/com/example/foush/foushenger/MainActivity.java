@@ -3,6 +3,7 @@ package com.example.foush.foushenger;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+        */
+
         logout=(Button)findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-*/
 
 
 
