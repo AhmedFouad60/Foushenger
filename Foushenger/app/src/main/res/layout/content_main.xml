@@ -11,38 +11,29 @@
     android:layout_marginTop="16dp"
     <RelativeLayout
 
-
+        android:backgroundTint="@android:color/white"
+        android:background="@color/MainRecycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
+        android:layout_marginTop="30dp"
         tools:context=".MainActivity">
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical" >
 
-            <ListView
-                android:id="@+id/ListView"
-                android:layout_width="fill_parent"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_chat_rooms"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="match_parent" />
 
-               android:layout_height="match_parent"
-                android:layout_marginBottom="0dp"
-                android:layout_marginTop="55dp"
-                android:background="@android:color/transparent"
-                android:cacheColorHint="@android:color/transparent"
-                android:divider="#CCCCCC"
-                android:dividerHeight="1dp"
-                android:paddingLeft="2dp"
-
-
-                >
-
-            </ListView>
-
-        </LinearLayout>
+        </RelativeLayout>
 
 
 
