@@ -24,7 +24,7 @@ public interface API {
     Call<MainResponse> registerUser(@Body User user);
 
     @POST("add_chat_rooms.php")
-    Call<MainResponse> addChatRoom(ChatRoom chatRoom);
+    Call<MainResponse> addChatRoom(@Body ChatRoom chatRoom);
     @FormUrlEncoded
     @POST("delete_chat_room.php")
     Call<MainResponse>deleteChatRoom(@Field("id")int roomId);
