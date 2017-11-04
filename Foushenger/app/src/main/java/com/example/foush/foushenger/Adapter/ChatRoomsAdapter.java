@@ -1,6 +1,7 @@
 package com.example.foush.foushenger.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.foush.foushenger.ChatActivity;
 import com.example.foush.foushenger.R;
 import com.example.foush.foushenger.models.ChatRoom;
 
@@ -49,6 +51,17 @@ public class ChatRoomsAdapter extends RecyclerView.Adapter<ChatRoomsAdapter.chat
         // Populate the data into the template view using the data object
         chatTittle.setText(chatRoom.room_name);
         chatDesc.setText(chatRoom.room_desc);
+        //start chat activity
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, ChatActivity.class);
+                intent.putExtra("room_id",Integer.parseInt(chatRoom.id));
+                intent.putExtra("room_name",chatRoom.room_name);
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 

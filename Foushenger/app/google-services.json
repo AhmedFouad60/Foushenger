@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "948448034619",
+    "firebase_url": "https://foushenger.firebaseio.com",
+    "project_id": "foushenger",
+    "storage_bucket": "foushenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948448034619:android:1bf17e70b8f0939d",
+        "android_client_info": {
+          "package_name": "com.example.foush.foushenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948448034619-dtboj02strvejpvt7qi7aboffmkrn0av.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkbN72Vxagg6FRrLe2vz2wp1QIB2raUHA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

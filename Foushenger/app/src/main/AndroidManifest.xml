@@ -20,12 +20,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".ChatActivity"></activity>
 
-        <activity android:name=".MainActivity"
+        <service android:name=".fcm.FirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
 
-        />
+            </intent-filter>
 
-        <activity android:name=".SignUpActivity"></activity>
+        </service>
+
+
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.example.foush.foushenger.webservices;
 import com.example.foush.foushenger.models.ChatRoom;
 import com.example.foush.foushenger.models.LoginResponse;
 import com.example.foush.foushenger.models.MainResponse;
+import com.example.foush.foushenger.models.Message;
 import com.example.foush.foushenger.models.User;
 
 import java.util.List;
@@ -30,5 +31,12 @@ public interface API {
     Call<MainResponse>deleteChatRoom(@Field("id")int roomId);
     @POST("get-all-chat-rooms.php")
     Call<List<ChatRoom>>getAllChatRooms();
+    //Get the messages
+    @FormUrlEncoded
+    @POST("get-messages.php")
+    Call<List<Message>> getMessages( @Field("room_id") int RoomId);
+    //add Message
+    @POST("add-message.php")
+    Call<MainResponse>addMessage(@Body Message message);
 
 }

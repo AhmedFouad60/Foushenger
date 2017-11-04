@@ -13,6 +13,8 @@
     <color name="primary_darker">#CC1D1D</color>
     <color name="accent">#FFFFFF</color>
     <color name="MainRecycle">#736d6d</color>
+    <color name="colorDarkGray">#494949</color>
+    <color name="colorWhite">#FFFFFF</color>
 
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
